@@ -22,4 +22,4 @@ runs:
         JF_PASSWORD: ${{ inputs.jf_password }}
     - run: |
         jf rt ping
-
+      shell: bash
