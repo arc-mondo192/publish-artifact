@@ -1,0 +1,16 @@
+name: CI
+
+on: [push]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3 
+      - name: Publish to Artifactory
+        uses: ./ 
+        with:
+          jf_url: ${{ secrets.JF_URL }}
+          jf_user: ${{ secrets.JF_USER }}
+          jf_password: ${{ secrets.JF_PASSWORD }}
