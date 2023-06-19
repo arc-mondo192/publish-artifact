@@ -25,7 +25,7 @@ runs:
     - name: Ping Artifactory
       run: |
         jf rt ping
-        jf rt npm p test --build-numer=${{ github.ref_name }}
+        jf rt npm p test --build-number=${{ github.ref_name }}
       shell: bash
     # - name: Publish artifact
     #   if: ${{ inputs.repository_type == "npm" }}
