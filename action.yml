@@ -8,6 +8,8 @@ inputs:
     required: true
   jf_password:
     required: true
+  repository_type:
+    required: true
 
 runs:
   using: "composite"
@@ -20,6 +22,14 @@ runs:
         JF_URL: ${{ inputs.jf_url }}        
         JF_USER: ${{ inputs.jf_user }}
         JF_PASSWORD: ${{ inputs.jf_password }}
-    - run: |
+    - name: Ping Artifactory
+      run: |
         jf rt ping
+        echo "${{ github.ref_name }}"
       shell: bash
+    # - name: Publish artifact
+    #   if: ${{ inputs.repository_type == "npm" }}
+    #   run: |
+    #     echo ${{ github.ref_name }}
+        
+
