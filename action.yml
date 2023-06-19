@@ -23,7 +23,7 @@ runs:
         JF_USER: ${{ inputs.jf_user }}
         JF_PASSWORD: ${{ inputs.jf_password }}
     - name: Publish NPM Artifact
-      if: ${{ inputs.repository_type == "npm" }}
+      if: ${{ inputs.repository_type == 'npm' }}
       run: |
         echo "Hello from NPM"
         # jf npm-config 
