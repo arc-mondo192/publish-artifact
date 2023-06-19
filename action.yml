@@ -22,14 +22,13 @@ runs:
         JF_URL: ${{ inputs.jf_url }}        
         JF_USER: ${{ inputs.jf_user }}
         JF_PASSWORD: ${{ inputs.jf_password }}
-    - name: Ping Artifactory
+    - name: Publish NPM Artifact
+      if: ${{ inputs.repository_type == "npm" }}
       run: |
-        jf rt ping
-        jf npm p test --build-name=test --build-number=${{ github.ref_name }}
+        echo "Hello from NPM"
+        # jf npm-config 
+        # jf npm publish --build-name=bootstrap --build-number=${{ github.ref_name }}
       shell: bash
-    # - name: Publish artifact
-    #   if: ${{ inputs.repository_type == "npm" }}
-    #   run: |
-    #     echo ${{ github.ref_name }}
+
         
 
