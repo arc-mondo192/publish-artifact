@@ -29,6 +29,13 @@ runs:
         # jf npm-config 
         # jf npm publish --build-name=bootstrap --build-number=${{ github.ref_name }}
       shell: bash
+    - name: Publish GEM Artifact
+      if: ${{ inputs.repository_type == 'gem' }}
+      run: |
+        echo "Hello from GEM"
+        # jf npm-config 
+        # jf npm publish --build-name=bootstrap --build-number=${{ github.ref_name }}
+      shell: bash
 
         
 
