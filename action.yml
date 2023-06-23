@@ -25,7 +25,7 @@ runs:
     - name: Publish NPM Artifact
       if: ${{ inputs.repository_type == 'npm' }}
       run: |
-        echo "Hello from NPM"
+        jf config add mondo192
         jf npm-config 
         jf npm publish --build-name=bootstrap --build-number=${{ github.ref_name }}
       shell: bash
