@@ -27,6 +27,7 @@ runs:
     - name: Adds a server configuration
       run: |
         jf c add mondo192 --url=$JF_URL --user=$JF_USER --password=$JF_PASSWORD --interactive=false
+      shell: bash
     - name: Publish NPM Artifact
       if: ${{ inputs.repository_type == 'npm' }}
       run: |
