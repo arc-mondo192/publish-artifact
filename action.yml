@@ -26,15 +26,15 @@ runs:
       if: ${{ inputs.repository_type == 'npm' }}
       run: |
         echo "Hello from NPM"
-        # jf npm-config 
-        # jf npm publish --build-name=bootstrap --build-number=${{ github.ref_name }}
+        jf npm-config 
+        jf npm publish --build-name=bootstrap --build-number=${{ github.ref_name }}
       shell: bash
     - name: Publish GEM Artifact
       if: ${{ inputs.repository_type == 'gem' }}
       run: |
         echo "Hello from GEM"
-        # jf npm-config 
-        # jf npm publish --build-name=bootstrap --build-number=${{ github.ref_name }}
+        jf npm-config 
+        jf npm publish --build-name=bootstrap --build-number=${{ github.ref_name }}
       shell: bash
 
         
