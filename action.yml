@@ -24,24 +24,22 @@ runs:
         JF_URL: ${{ inputs.jf_url }}        
         JF_USER: ${{ inputs.jf_user }}
         JF_PASSWORD: ${{ inputs.jf_password }}
-    - name: Adds a server configuration
+    - name: Add server configuration
       run: |
         jf c add mondo192 --url=$JF_URL --user=$JF_USER --password=$JF_PASSWORD --interactive=false
       shell: bash
-    - name: Publish NPM Artifact
-      if: ${{ inputs.repository_type == 'npm' }}
+    - name: Push Build to Artifactory
       run: |
-        jf config add mondo192
-        jf npm-config 
-        jf npm publish --build-name=bootstrap --build-number=${{ github.ref_name }}
-      shell: bash
-    - name: Publish GEM Artifact
-      if: ${{ inputs.repository_type == 'gem' }}
-      run: |
-        echo "Hello from GEM"
-        jf npm-config 
-        jf npm publish --build-name=bootstrap --build-number=${{ github.ref_name }}
-      shell: bash
-
+        echo "test file " > test.txt
+        export BUILD_NAME="my-build"
+        export BUILD_MODULE="my-module"
+        export BUILD_NUMBER="1"
         
-
+        export PATH_TO_DIRECTORY="name/version/dates"
+        jf rt upload "test.txt" example-repo-local/$PATH_TO_DIRECTORY --build-name $BUILD_NAME --build-number $BUILD_NUMBER --module $BUILD_MODULE
+      shell: bash
+    - name: Build to Artifactory
+      run: |
+        jf rt build-publish $BUILD_NAME $BUILD_NUMBER
+        jf rt bdi -c --max-builds=1
+      shell: bash
