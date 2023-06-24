@@ -27,7 +27,7 @@ runs:
     - name: Add server configuration
       run: |
         export SERVER_ID="mondo192"
-        jf c add $SERVER_ID --url=$URL --user=$JF_USER --password=$JF_PASSWORD --interactive=false
+        jf c add $SERVER_ID --url=$JF_URL --user=$JF_USER --password=$JF_PASSWORD --interactive=false
       shell: bash
     - name: Push Build to Artifactory
       run: |
