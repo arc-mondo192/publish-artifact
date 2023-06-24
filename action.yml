@@ -25,10 +25,10 @@ runs:
         JF_USER: ${{ inputs.jf_user }}
         JF_PASSWORD: ${{ inputs.jf_password }}
     - name: Run JFrog CLI
-        run: |
-          # Collect environment variables for the build
-          jf rt bce
-          # Collect VCS details from git and add them to the build
-          jf rt bag
-          # Publish build info
-          jf rt bp
+      run: |
+        # Collect environment variables for the build
+        jf rt bce
+        # Collect VCS details from git and add them to the build
+        jf rt bag
+        # Publish build info
+        jf rt bp
