@@ -32,3 +32,4 @@ runs:
         jf rt bag
         # Publish build info
         jf rt bp
+      shell: bash
