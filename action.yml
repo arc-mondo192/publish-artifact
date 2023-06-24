@@ -26,7 +26,8 @@ runs:
         JF_PASSWORD: ${{ inputs.jf_password }}
     - name: Add server configuration
       run: |
-        jf c add mondo192 --url=${{ env.JF_URL }} --user=${{ env.JF_USER }} --password=${{ env.JF_PASSWORD }} --interactive=false
+        export SERVER_ID="mondo192"
+        jf c add $SERVER_ID --url=$URL --user=$JF_USER --password=$JF_PASSWORD --interactive=false
       shell: bash
     - name: Push Build to Artifactory
       run: |
