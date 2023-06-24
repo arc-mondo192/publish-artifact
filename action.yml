@@ -24,23 +24,11 @@ runs:
         JF_URL: ${{ inputs.jf_url }}        
         JF_USER: ${{ inputs.jf_user }}
         JF_PASSWORD: ${{ inputs.jf_password }}
-    - name: Add server configuration
-      run: |
-        export SERVER_ID="mondo192"
-        jf c add $SERVER_ID --url=$JF_URL --user=$JF_USER --password=$JF_PASSWORD --interactive=false
-      shell: bash
-    - name: Push Build to Artifactory
-      run: |
-        echo "test file " > test.txt
-        export BUILD_NAME="my-build"
-        export BUILD_MODULE="my-module"
-        export BUILD_NUMBER="1"
-        
-        export PATH_TO_DIRECTORY="name/version/dates"
-        jf rt upload "test.txt" example-repo-local/$PATH_TO_DIRECTORY --build-name $BUILD_NAME --build-number $BUILD_NUMBER --module $BUILD_MODULE
-      shell: bash
-    - name: Build to Artifactory
-      run: |
-        jf rt build-publish $BUILD_NAME $BUILD_NUMBER
-        jf rt bdi -c --max-builds=1
-      shell: bash
+    - name: Run JFrog CLI
+        run: |
+          # Collect environment variables for the build
+          jf rt bce
+          # Collect VCS details from git and add them to the build
+          jf rt bag
+          # Publish build info
+          jf rt bp
