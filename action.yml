@@ -24,12 +24,8 @@ runs:
         JF_URL: ${{ inputs.jf_url }}        
         JF_USER: ${{ inputs.jf_user }}
         JF_PASSWORD: ${{ inputs.jf_password }}
-    - name: Run JFrog CLI
+    - name: Publish NPM
+      if: ${{ inputs.repository_type == 'npm' }}
       run: |
-        # Collect environment variables for the build
-        jf rt bce
-        # Collect VCS details from git and add them to the build
-        jf rt bag
-        # Publish build info
-        jf rt bp
+        echo "NPM Package"
       shell: bash
