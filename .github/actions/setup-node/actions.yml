@@ -1,0 +1,29 @@
+name: "Publish artifact"
+description: "Generic action to publish artifacts"
+
+inputs:
+  jf_url:
+    required: true
+  jf_user:
+    required: true
+  jf_password:
+    required: true
+  repository_type:
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v3.5.3
+    - name: Setup JFrog CLI
+      uses: jfrog/setup-jfrog-cli@v3.3.0
+      with:
+        version: 2.40.0
+      env:
+        JF_URL: ${{ inputs.jf_url }}        
+        JF_USER: ${{ inputs.jf_user }}
+        JF_PASSWORD: ${{ inputs.jf_password }}
+    - name: Publish NPM
+      if: ${{ inputs.repository_type == 'npm' }}
+      uses: ./actions/setup-node
