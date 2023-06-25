@@ -14,3 +14,5 @@ jobs:
           jf_url: ${{ secrets.JF_URL }}
           jf_user: ${{ secrets.JF_USER }}
           jf_password: ${{ secrets.JF_PASSWORD }}
+          repository_type: 'npm'
+

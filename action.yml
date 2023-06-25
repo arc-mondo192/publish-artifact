@@ -26,6 +26,7 @@ runs:
         JF_PASSWORD: ${{ inputs.jf_password }}
     - name: Publish NPM
       if: ${{ inputs.repository_type == 'npm' }}
-      run: |
-        echo "NPM Package"
-      shell: bash
+      uses: ./github/actions/setup-node
+      with:
+        registry-url: ${{ inputs.jf_url }}
+
